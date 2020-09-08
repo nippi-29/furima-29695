@@ -60,7 +60,11 @@ Things you may want to cover:
 ###  Association
 - belongs_to :user
 - has_one :transaction
-
+- belongs_to_active_hash :category
+- belongs_to_active_hash :item_status
+- belongs_to_active_hash :postage
+- belongs_to_active_hash :region
+- belongs_to_active_hash :shipping_date
 
 ## transaction テーブル
 
