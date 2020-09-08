@@ -45,17 +45,17 @@ Things you may want to cover:
 
 ## products テーブル
 
-| Column           | Type      | Option                         |
-| ---------------- | --------- | ------------------------------ |
-| name             | string    | null: false                    |
-| description      | text      | null: false                    |
-| category_id      | integer   | null: false                    |
-| item_status_id   | integer   | null: false                    |
-| postage_id       | integer   | null: false                    |
-| region_id        | integer   | null: false                    |
-| shipping_date_id | integer   | null: false                    |
-| price            | integer   | null: false                    |
-| user_id          | reference | null: false, foreign_key: true |
+| Column           | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| name             | string     | null: false                    |
+| description      | text       | null: false                    |
+| category_id      | integer    | null: false                    |
+| item_status_id   | integer    | null: false                    |
+| postage_id       | integer    | null: false                    |
+| region_id        | integer    | null: false                    |
+| shipping_date_id | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
 ###  Association
 - belongs_to :user
@@ -66,28 +66,28 @@ Things you may want to cover:
 
 | Column          | Type            | Option                         |
 | --------------- | --------------- | ------------------------------ |
-| users_id        | reference       | null: false, foreign_key: true |
-| items_id        | reference       | null: false, foreign_key: true |
+| users           | references      | null: false, foreign_key: true |
+| items           | references      | null: false, foreign_key: true |
 
 
 ###  Association
 - belongs_to :user
-- belongs_to :products
+- belongs_to :product
 - has_one :address
 
 
 
 ## addresses テーブル
 
-| Column              | Type      | Option                         |
-| ------------------- | --------- | ------------------------------ |
-| postcode            | string    | null: false                    |
-| prefecture_id       | integer   | null: false                    |
-| city                | string    | null: false                    |
-| block               | string    | null: false                    |
-| building            | string    |                                |
-| phone_number        | integer   | null: false                    |
-| transactions_id     | reference | null: false, foreign_key: true |
+| Column              | Type       | Option                         |
+| ------------------- | ---------- | ------------------------------ |
+| postcode            | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| city                | string     | null: false                    |
+| block               | string     | null: false                    |
+| building            | string     |                                |
+| phone_number        | string     | null: false                    |
+| transactions        | references | null: false, foreign_key: true |
 
 ###  Association
-- belongs_to :transactions
+- belongs_to :transaction
