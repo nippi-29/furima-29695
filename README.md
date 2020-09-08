@@ -27,39 +27,28 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column    | Type   | Options     |
-| ------    | ------ | ----------- |
-| name      | string | null: false |
-| email     | string | null: false |
-| password  | string | null: false |
-
-###  Association
-- has_many :products
-- has_one :profiles
-
-## profiles テーブル
-
-| Column          | Type      | Option                         |
+| Column          | Type      | Options                        |
 | --------------- | --------- | ------------------------------ |
+| name            | string    | null: false                    |
+| email           | string    | null: false                    |
+| password        | string    | null: false                    |
 | last_name       | string    | null: false                    |
 | first_name      | string    | null: false                    |
 | last_name_kana  | string    | null: false                    |
 | first_name_kana | string    | null: false                    |
-| birth_year      | date      | null: false                    |
-| birth_month     | date      | null: false                    |
-| birth_day       | date      | null: false                    |
-| users_id        | reference | null: false, foreign_key: true |
+| birth_date      | date      | null: false                    |
 
 ###  Association
-- belongs_to :user
+- has_many :products
+- has_many :transactions
+
 
 ## products テーブル
 
 | Column           | Type      | Option                         |
 | ---------------- | --------- | ------------------------------ |
-| item_image       | string    | null: false                    |
-| item_name        | string    | null: false                    |
-| item_description | text      | null: false                    |
+| name             | string    | null: false                    |
+| description      | text      | null: false                    |
 | category_id      | integer   | null: false                    |
 | item_status_id   | integer   | null: false                    |
 | postage_id       | integer   | null: false                    |
@@ -70,19 +59,35 @@ Things you may want to cover:
 
 ###  Association
 - belongs_to :user
-- has_one :addresses
+- has_one :transaction
+
+
+## transaction テーブル
+
+| Column          | Type            | Option                         |
+| --------------- | --------------- | ------------------------------ |
+| users_id        | reference       | null: false, foreign_key: true |
+| items_id        | reference       | null: false, foreign_key: true |
+
+
+###  Association
+- belongs_to :user
+- belongs_to :products
+- has_one :address
+
+
 
 ## addresses テーブル
 
-| Column        | Type      | Option                         |
-| ------------- | --------- | ------------------------------ |
-| postcode      | string    | null: false                    |
-| prefecture_id | integer   | null: false                    |
-| city          | string    | null: false                    |
-| block         | string    | null: false                    |
-| building      | string    |                                |
-| phone_number  | integer   | null: false                    |
-| items_id      | reference | null: false, foreign_key: true |
+| Column              | Type      | Option                         |
+| ------------------- | --------- | ------------------------------ |
+| postcode            | string    | null: false                    |
+| prefecture_id       | integer   | null: false                    |
+| city                | string    | null: false                    |
+| block               | string    | null: false                    |
+| building            | string    |                                |
+| phone_number        | integer   | null: false                    |
+| transactions_id     | reference | null: false, foreign_key: true |
 
 ###  Association
-- belongs_to :product
+- belongs_to :transactions
