@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_parmitted_parameters, if: :devise_controller?
 
-  
   protected
 
   def basic_auth
