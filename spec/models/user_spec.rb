@@ -22,6 +22,13 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Emailを入力してください')
     end
 
+    it 'emailに@がないときに登録できないこと' do
+      @user.email = "rails.test.jp"
+      @user.valid?
+      binding.pry
+      expect(@user.errors.full_messages).to include('Emailは＠マークが必要です')
+    end
+
     it 'passwordが空の場合に登録が出来ないこと' do
       @user.password = nil
       @user.valid?
