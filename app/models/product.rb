@@ -18,9 +18,9 @@ class Product < ApplicationRecord
     validates  :postage_id,               numericality: { other_than: 1 }
     validates  :region_id,                numericality: { other_than: 1 }
     validates  :shipping_date_id,         numericality: { other_than: 1 }
-    validates  :price,                    format: {  with: /\A[a-zA-Z0-9]+\z/,
-                                                    greater_than_or_equal_to: 300,
-                                                    less_than_or_equal_to: 9999999}
+    validates  :price,                    format: {  with: /\A[a-zA-Z0-9]+\z/ },
+                                          numericality: { greater_than_or_equal_to: 300,
+                                                        less_than_or_equal_to: 9999999}
   end
 
 end
