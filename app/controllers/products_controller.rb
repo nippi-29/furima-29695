@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :destroy]
+  before_action :set_product, only: [:show, :destroy, :edit, :update]
   before_action :authenticate_user!, except: [:index, :show]
   def index
     @products = Product.all.order('created_at DESC')
@@ -24,6 +24,17 @@ class ProductsController < ApplicationController
     if @item.destroy
       redirect_to root_path
     else render :show
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @item.update(product_params)
+    if @item.save
+      redirect_to root_path
+    else render :edit
     end
   end
 
