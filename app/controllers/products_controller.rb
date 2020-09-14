@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order('created_at DESC')
   end
 
   def new
@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
     product.destroy
     redirect_to root_path
   end
-
 
   private
 
