@@ -13,7 +13,8 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
-    else render :new
+    else 
+      render :new
     end
   end
 
@@ -31,10 +32,10 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @item.update(product_params)
-    if @item.save
-      redirect_to root_path
-    else render :edit
+    if @item.update(product_params)
+      redirect_to :show
+    else 
+      render :edit
     end
   end
 
