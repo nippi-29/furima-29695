@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @products = Product.all.order("created_at DESC")
+    @products = Product.all.order('created_at DESC')
   end
 
   def new
@@ -17,13 +18,22 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @item = Product.find(params[:id])
   end
 
+  def destroy
+    if @item.destroy
+      redirect_to root_path
+    else render :show
+    end
+  end
 
   private
 
   def product_params
     params.require(:product).permit(:image, :name, :description, :category_id, :item_status_id, :postage_id, :region_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+  end
+
+  def set_product
+    @item = Product.find(params[:id])
   end
 end
