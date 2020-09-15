@@ -40,7 +40,7 @@ Things you may want to cover:
 
 ###  Association
 - has_many :products
-- has_many :transactions
+- has_many :orders
 
 
 ## products テーブル
@@ -59,14 +59,14 @@ Things you may want to cover:
 
 ###  Association
 - belongs_to :user
-- has_one :transaction
+- has_one :order
 - belongs_to_active_hash :category
 - belongs_to_active_hash :item_status
 - belongs_to_active_hash :postage
 - belongs_to_active_hash :region
 - belongs_to_active_hash :shipping_date
 
-## transaction テーブル
+## orders テーブル
 
 | Column          | Type            | Option                         |
 | --------------- | --------------- | ------------------------------ |
@@ -94,5 +94,5 @@ Things you may want to cover:
 | transaction         | references | null: false, foreign_key: true |
 
 ###  Association
-- belongs_to :transaction
+- belongs_to :order
 - belongs_to_active_hash :prefecture
