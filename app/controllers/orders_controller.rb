@@ -12,9 +12,9 @@ class OrdersController < ApplicationController
     if @order.valid?
       pay_product
       @order.save
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render "index"
+      render 'index'
     end
   end
 
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order_address).permit( :postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(product_id: params[:product_id], user_id: current_user.id, token: params[:token])
+    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(product_id: params[:product_id], user_id: current_user.id, token: params[:token])
   end
 
   def pay_product
@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
     Payjp::Charge.create(
       amount: @product.price,
       card: params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
 
