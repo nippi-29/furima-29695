@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+
   end
 
   def destroy
@@ -33,7 +34,7 @@ class ProductsController < ApplicationController
 
   def update
     if @item.update(product_params)
-      redirect_to :show
+      redirect_to product_path
     else
       render :edit
     end
