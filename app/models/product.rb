@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :shipping_date
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   with_options presence: true do
     validates  :image
