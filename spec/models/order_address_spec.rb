@@ -66,7 +66,6 @@ RSpec.describe OrderAddress, type: :model do
     it 'tokenが空の場合に保存が出来ないこと' do
       @order_address.token = nil
       @order_address.valid?
-      binding.pry
       expect(@order_address.errors.full_messages).to include("Tokenが入力されていません。")
     end
   end
