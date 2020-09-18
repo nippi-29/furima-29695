@@ -62,5 +62,12 @@ RSpec.describe OrderAddress, type: :model do
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include('Phone numberは-を含まない10桁か11桁の半角英数字で入力してください')
     end
+
+    it 'tokenが空の場合に保存が出来ないこと' do
+      @order_address.token = nil
+      @order_address.valid?
+      binding.pry
+      expect(@order_address.errors.full_messages).to include("Tokenが入力されていません。")
+    end
   end
 end
